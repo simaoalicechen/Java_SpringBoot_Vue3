@@ -63,6 +63,21 @@ const routes = [
     component: () => import('../views/restaurant/restaurantView.vue')
   },
   {
+    path: "/restaurant/restaurantDetails",
+    name: "RestaurantDetails",
+    component: () => import('../views/restaurant/restaurantDetails.vue')
+  },
+  {
+    path: "/restaurant/restaurantCard",
+    name: "RestaurantCard",
+    component: () => import('../views/restaurant/restaurantCard.vue')
+  },
+  {
+    path: "/restaurant/restaurantShareCard",
+    name: "RestaurantShareCard",
+    component: () => import('../views/restaurant/restaurantShareCard.vue')
+  },
+  {
     path: "/order/addOrder",
     name: "OrderView",
     component: () => import('../views/order/orderView.vue')

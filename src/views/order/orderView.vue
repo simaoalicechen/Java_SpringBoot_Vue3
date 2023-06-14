@@ -36,11 +36,6 @@ export default {
         console.log(error); 
       }); 
     },
-    methods: {
-      getPhonenumber(){
-        return this.$store.getters[`auth/${GET_PHONENUMBER}`]
-      }
-    },
   data(){
       return {
         tableData: {}

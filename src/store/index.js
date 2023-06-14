@@ -24,15 +24,27 @@ export const useUserStore = defineStore("mainStore", {
   }
 })
 
-export const useCounterStore=defineStore("counter", ()=>{
-  const counter=ref(30);//state
-  const getterCounter = computed(() =>{
-    return counter.value+5;
-  })
+export const useRestaurantStore = defineStore("resInfoStore", {
+  state: () => {
+   return {
+     userInfo: {
 
-  function addCounter(){
-    counter.value++; 
+     }
+   }
+},
+  getters: {// 相当于computed 计算属性
+    gettersUserInfo: (state) => state.userInfo,
+  },
+  actions: {//相当于methods
+    changeName(newName){
+      this.userInfo["username"] = newName; 
+    },
+    saveUserInfo(userInfoFromBackEnd){
+      this.userInfo = userInfoFromBackEnd;
+    },
+    deleteUserInfo(){
+      this.userInfo = {};
+    }
   }
-
-  return {counter, getterCounter, addCounter}
 })
+
