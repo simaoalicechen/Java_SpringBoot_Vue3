@@ -7,6 +7,11 @@ const routes = [
     name: "HomePage",
     component: () => import('../views/HomePage.vue')
   },
+  // {
+  //   path: "/logout",
+  //   name: "logout",
+  //   component: () => import('../views/LogoutView.vue')
+  // },
   {
     path: "/login/loginwithphonenumber",
     name: "LoginWithPhonenumber",

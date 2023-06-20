@@ -46,10 +46,10 @@ function signup(){
         "phonenumber": this.input.phonenumber
       }).then(response => {
         console.log("SignupView:  ", response);
-        this.output = res.code + res.msg;
+        this.output = response.code + response.msg;
       }).catch((error) => {
         console.log(error); 
-        this.output = res.code + res.msg;
+        this.output = response.code + response.msg;
       }); 
       }else{
         this.output = "Username and password can not be empty";

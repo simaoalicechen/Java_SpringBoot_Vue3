@@ -133,6 +133,9 @@ export default {
   created:function(){
       getUserResRelation().then(response => {
         this.userResRelation  = response["0"];
+        console.log("this.userResRelation", this.userResRelation)
+        console.log(response["0"])
+        console.log(response)
       }).catch((error) => {
         console.log(error); 
       }); 
