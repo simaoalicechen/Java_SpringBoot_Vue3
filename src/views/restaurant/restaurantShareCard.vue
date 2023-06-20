@@ -1,7 +1,5 @@
 <template>
   <div style="select: none">
-    <div>当前卡：{{this.cardIndex}}</div>
-    <button @click="increaseCardIndex">下一张卡</button>
     <div class="school-sharecard-container" 
          @click="swapDetail"
          >
@@ -42,10 +40,10 @@
 import { getRestaurantList } from "../../api/index.js";
 
 export default {
+  name: "restaurantShareCard",
   computed: {
     currCard(){
       let res = {}
-
       if(this.resCards[this.cardIndex]){
         res = this.resCards[this.cardIndex]
       }
@@ -82,7 +80,11 @@ export default {
     getCurrCard(){
       this.currCard = this.resCards[this.cardIndex]
       return this.currCard
+    },
+    getCurrCardIndex(){
+      return this.cardIndex; 
     }
+
   },
 }
 </script>

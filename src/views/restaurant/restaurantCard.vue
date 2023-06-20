@@ -96,15 +96,7 @@ export default {
     swapDetail() {
       this.isDetail = !this.isDetail;
     },
-    findEachCard(){ 
-      for(i=0; i<resCards.length; i++){
-        const resCard = ref([])
-        resCard = resCards[i]
-        return resCard
-    }
-    }
   },
-
 }
 </script>
 

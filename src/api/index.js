@@ -36,6 +36,14 @@ export function addOrder(option){
   })
 }
 
+export function addOrUpdateUserResRelation(params){
+  return request({
+    url: '/userres/addOrUpdateResToUserRes', 
+    method: "post", 
+    params
+  })
+}
+
 export function getRestaurantList(params){
   return request({
     url: '/restaurant/restaurantview', 
@@ -49,6 +57,14 @@ export function getUserInfo(params){
     url: '/user/checkifloggedin', 
     method: "get",
     params
+  })
+}
+
+export function getUserResRelation(params){
+  return request({
+    url: '/userres/getUserResRelationById', 
+    method: "get",
+    params,
   })
 }
 
