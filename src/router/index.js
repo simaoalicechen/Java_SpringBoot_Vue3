@@ -60,6 +60,11 @@ const routes = [
         name: "Usermanagement",
         component: () => import('../admin/usermanagement.vue')
       },
+      {
+        path: "systems",
+        name: "Systems",
+        component: () => import('../admin/views/index.vue')
+      },
     ]
   },
   {
