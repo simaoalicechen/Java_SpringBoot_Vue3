@@ -10,9 +10,11 @@ import instance from "@/utils/request.js";
 import {createPinia} from "pinia";
 import piniaPersist from 'pinia-plugin-persist'
 
+
 const pinia = createPinia();
 pinia.use(piniaPersist)
 const app = createApp(App).use(pinia).use(store).use(router).use(ElementPlus)
+// app.use(parseTime)
 //在这中间写组件的全局注册
 // app.component("GlobalComponent", GlobaleComponent)
 // app.config.globalProperties.axios = axiosInstance;

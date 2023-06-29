@@ -11,12 +11,7 @@
       </el-form-item>
       <el-form-item label="状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="部门状态" clearable>
-          <el-option
-            v-for="dict in dict.type.sys_normal_disable"
-            :key="dict.value"
-            :label="dict.label"
-            :value="dict.value"
-          />
+
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -59,17 +54,14 @@
       <el-table-column prop="deptName" label="部门名称" width="260"></el-table-column>
       <el-table-column prop="orderNum" label="排序" width="200"></el-table-column>
       <el-table-column prop="status" label="状态" width="100">
-        <template slot-scope="scope">
-          <dict-tag :options="dict.type.sys_normal_disable" :value="scope.row.status"/>
+        <template v-slot="scope" >
+      
         </template>
       </el-table-column>
       <el-table-column label="创建时间" align="center" prop="createTime" width="200">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime) }}</span>
-        </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <el-button
             size="mini"
             type="text"
@@ -139,11 +131,7 @@
           <el-col :span="12">
             <el-form-item label="部门状态">
               <el-radio-group v-model="form.status">
-                <el-radio
-                  v-for="dict in dict.type.sys_normal_disable"
-                  :key="dict.value"
-                  :label="dict.value"
-                >{{dict.label}}</el-radio>
+               
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -159,9 +147,11 @@
 
 <script>
 import { listDept, getDept, delDept, addDept, updateDept, listDeptExcludeChild } from "@/api/systems/index.js";
-import Treeselect from "@riophae/vue-treeselect";
-import "@riophae/vue-treeselect/dist/vue-treeselect.css";
-
+// import the component
+import Treeselect from '@riophae/vue-treeselect'
+// import the styles
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import  {parseTime, resetForm, addDateRange, selectDictLabel, selectDictLabels, handleTree} from "../../utils/ruoyi";
 export default {
   name: "Dept",
   dicts: ['sys_normal_disable'],
@@ -227,7 +217,10 @@ export default {
     getList() {
       this.loading = true;
       listDept(this.queryParams).then(response => {
-        this.deptList = this.handleTree(response.data, "deptId");
+        console.log("response.data:", response)
+        this.deptList = handleTree(response, "deptId");
+        console.log("deptList:", this.deptList)
+        console.log("deptList:", typeof(deptList))
         this.loading = false;
       });
     },
@@ -279,7 +272,7 @@ export default {
       this.open = true;
       this.title = "添加部门";
       listDept().then(response => {
-        this.deptOptions = this.handleTree(response.data, "deptId");
+        this.deptOptions = handleTree(response.data, "deptId");
       });
     },
     /** 展开/折叠操作 */
@@ -298,7 +291,7 @@ export default {
         this.open = true;
         this.title = "修改部门";
         listDeptExcludeChild(row.deptId).then(response => {
-          this.deptOptions = this.handleTree(response.data, "deptId");
+          this.deptOptions = handleTree(response.data, "deptId");
           if (this.deptOptions.length == 0) {
             const noResultsOptions = { deptId: this.form.parentId, deptName: this.form.parentName, children: [] };
             this.deptOptions.push(noResultsOptions);

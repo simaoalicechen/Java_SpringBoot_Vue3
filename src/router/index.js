@@ -59,13 +59,13 @@ const routes = [
         path: "getalluser",
         name: "Usermanagement",
         component: () => import('../admin/usermanagement.vue')
-      },
-      {
-        path: "systems",
-        name: "Systems",
-        component: () => import('../admin/views/index.vue')
-      },
+      }
     ]
+  },
+  {
+    path: "/systems",
+    name: "Systems",
+    component: () => import('../admin/views/index.vue')
   },
   {
     path: "/restaurant/restaurantView",
