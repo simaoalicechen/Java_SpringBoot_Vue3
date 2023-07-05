@@ -4,7 +4,7 @@ import { removePopper } from "element-plus/es/components/table/src/util";
 
 const instance = axios.create({
   baseURL: "http://localhost:8080",
-  timeout: 6000
+  timeout: 60000
 });
 
 instance.interceptors.request.use(function(config) {

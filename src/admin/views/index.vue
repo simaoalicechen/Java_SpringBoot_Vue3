@@ -27,7 +27,6 @@
           plain
           icon="el-icon-plus"
           size="mini"
-          @click="handleAdd"
           v-hasPermi="['system:dept:add']"
         >新增</el-button>
       </el-col>
@@ -66,14 +65,12 @@
             size="mini"
             type="text"
             icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
             v-hasPermi="['system:dept:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-plus"
-            @click="handleAdd(scope.row)"
             v-hasPermi="['system:dept:add']"
           >新增</el-button>
           <el-button
@@ -81,7 +78,6 @@
             size="mini"
             type="text"
             icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
             v-hasPermi="['system:dept:remove']"
           >删除</el-button>
         </template>
@@ -252,7 +248,7 @@ export default {
         email: undefined,
         status: "0"
       };
-      this.resetForm("form");
+      // this.resetForm("form");
     },
     /** 搜索按钮操作 */
     handleQuery() {
@@ -260,9 +256,10 @@ export default {
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm("queryForm");
-      this.handleQuery();
+      // this.resetForm("queryForm");
+      // this.handleQuery();
     },
+    
     /** 新增按钮操作 */
     handleAdd(row) {
       this.reset();
