@@ -44,7 +44,6 @@
 
     <el-table
       v-if="refreshTable"
-      v-loading="loading"
       :data="deptList"
       row-key="deptId"
       :default-expand-all="isExpandAll"
@@ -142,7 +141,6 @@
 </template>
 
 <script>
-import { listDept, getDept, delDept, addDept, updateDept, listDeptExcludeChild } from "@/api/systems/index.js";
 // import the component
 import Treeselect from '@riophae/vue-treeselect'
 // import the styles
@@ -155,7 +153,7 @@ export default {
   data() {
     return {
       // 遮罩层
-      loading: true,
+      // loading: true,
       // 显示搜索条件
       showSearch: true,
       // 表格树数据
@@ -211,14 +209,7 @@ export default {
   methods: {
     /** 查询部门列表 */
     getList() {
-      this.loading = true;
-      listDept(this.queryParams).then(response => {
-        console.log("response.data:", response)
-        this.deptList = handleTree(response, "deptId");
-        console.log("deptList:", this.deptList)
-        console.log("deptList:", typeof(deptList))
-        this.loading = false;
-      });
+      // this.loading = true;
     },
     /** 转换部门数据结构 */
     normalizer(node) {
