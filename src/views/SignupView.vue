@@ -31,38 +31,36 @@
 import { getSignup } from "../api/index.js";
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
-
+const input = ref({
+       password: "",
+       username: "",
+       phonenumber: "",
+    })
+let output = ref();
 const isLogin = !!localStorage.getItem("satoken");
 const newRouter = useRouter();
 function backToMain(){
       newRouter.push("/");
   }
 function signup(){
-    if(this.input.username != "" && this.input.phonenumber != "" && this.input.password != ""){
+    if(input.username != "" && input.phonenumber != "" && input.password != ""){
       
     getSignup({
-        "username": this.input.username,
-        "password": this.input.password,
-        "phonenumber": this.input.phonenumber
+        "username": input.username,
+        "password": input.password,
+        "phonenumber": input.phonenumber
       }).then(response => {
         console.log("SignupView:  ", response);
-        this.output = response.code + response.msg;
+        output = response.code + response.msg;
       }).catch((error) => {
         console.log(error); 
-        this.output = response.code + response.msg;
+        output = response.code + response.msg;
       }); 
       }else{
-        this.output = "Username and password can not be empty";
+        output = "Username and password can not be empty";
     }
   }
 
-
-  const input = ref({
-       password: "",
-       username: "",
-       phonenumber: "",
-    })
-  const output = ref();
 
 </script>
 

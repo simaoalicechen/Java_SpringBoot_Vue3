@@ -37,36 +37,34 @@ const input = reactive({
             password: "alice12345",
             phonenumber: "12345678910"
         })
-  const output = ref()
+  let output = ref()
   const newRouter = useRouter();
   function backToMain(){
       newRouter.push("/HomePage");
   }
   function login(){
-      if(this.input.phonenumber != "" && this.input.password != ""){
-        this.output = "Authentication complete";
+      if(input.phonenumber != "" && input.password != ""){
+        output = "Authentication complete";
         getLoginWithphonenumber({
-          password: this.input.password,
-          phonenumber: this.input.phonenumber
+          password: input.password,
+          phonenumber: input.phonenumber
         }).then(res => {
           // 用LocalStorage来存储satoken
-          // console.log("res 来自于loginwithphonenumber： ", res);
-          // console.log(res.data);
-          // console.log(res.data.token);
           localStorage.setItem("satoken", res.data.token)
           // 用Pinia来存储userInfo
           userStore.saveUserInfo(res.data);
-          console.log("userStore: ", userStore);
-          console.log("userStore userinfo username: ", userStore.userInfo.username);
-          this.output = res.code + res.msg;
+          output = res.code + res.msg;
               
             }).catch((error) => {
               console.log('catch',error);
-              // this.output = res.code + res.msg;
             }); 
       }else{
-        this.output = "Phonenumber and password can not be empty";
+        output = "Phonenumber and password can not be empty";
       }
+ 
+    // return {
+    //   isLogin, userStore, input, output, newRouter, backToMain
+    // }
   }
 </script>
 

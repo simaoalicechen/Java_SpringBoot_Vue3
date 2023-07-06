@@ -34,36 +34,30 @@ import { useRouter } from "vue-router";
     password: "",
     username: ""
   })
-  const output = ref()
+  let output = ref()
   const newRouter = useRouter();
   function backToMain(){
       newRouter.push("/HomePage");
   }
   function login(){
-      if(this.input.username != "" && this.input.password != ""){
-        this.output = "Authentication complete";
-        this.output = "Authentication complete.";
-      console.log(this.input);
-      getLoginWithusername(this.input).then(res => {
+      if(input.username != "" && input.password != ""){
+        output = "Authentication complete";
+      console.log(input);
+      getLoginWithusername(input).then(res => {
 
           // 用LocalStorage来存储satoken
-          console.log("res 来自于loginwithphonenumber： ", res);
-          console.log(res.data);
-          console.log(res.data.token);
               localStorage.setItem("satoken", res.data.token)
           // 用Pinia来存储userInfo
-              userStore.saveUserInfo(res.data);
-              console.log("userStore: ", userStore);
-              console.log("userStore userinfo username: ", userStore.userInfo.username);
-              this.output = res.code + res.msg;
+              output = res.code + res.msg;
               
       }).catch((error) => {
         console.log(error); 
-        // this.output = res.code + res.msg;
       }); 
       }else{
-        this.output = "Username and password can not be empty";
+        output = "Username and password can not be empty";
     }
+
+   
   }
 
 </script>
